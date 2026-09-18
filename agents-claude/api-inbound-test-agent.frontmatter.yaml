@@ -1,0 +1,6 @@
+name: api-inbound-test-agent
+description: >-
+  Specialist for inbound REST/gRPC/GraphQL entry points. Invoked by diamond-testing-expert once the boundary map confirms this surface is present. Drives tests through the real HTTP/RPC entry point, not direct controller-method calls.
+model: sonnet
+color: blue
+tools: Read, Grep, Glob, Write, Edit, Bash, Agent

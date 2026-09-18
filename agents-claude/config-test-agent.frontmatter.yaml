@@ -1,0 +1,6 @@
+name: config-test-agent
+description: >-
+  Specialist for configuration binding, validation, and profile-dependent wiring. Tests config through real property-source loading, not hand-constructed config objects.
+model: sonnet
+color: cyan
+tools: Read, Grep, Glob, Write, Edit, Bash

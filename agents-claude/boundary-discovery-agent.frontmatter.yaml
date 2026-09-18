@@ -1,0 +1,6 @@
+name: boundary-discovery-agent
+description: >-
+  Use first, before any test-creator agent runs. Scans the in-scope codebase, classifies every test surface and participant (inbound API, external API, jobs, database, middleware, config, algorithms/rules), and produces a Mermaid boundary map at .diamond-testing/boundaries.md for the engineer to approve. Does not write tests.
+model: sonnet
+color: gray
+tools: Read, Grep, Glob, Write

@@ -1,0 +1,18 @@
+name: bdd-acceptance-writer
+description: >-
+  Use this agent to elicit and write acceptance criteria as Gherkin (Given/When/Then) scenarios for new or changed user-facing behavior, before or alongside implementation — especially when a product owner or stakeholder needs to confirm expected behavior in plain language, or when a feature lacks a clear, testable definition of "done." This agent produces the .feature files that diamond-testing-expert later automates as the E2E tier — invoke this one first for any change with a business-visible outcome. Examples:
+
+  <example>
+  Context: User is about to start work on a new withdrawal-limits feature with no written acceptance criteria yet.
+  user: "We need to add a daily withdrawal limit of $10k per client, can you help scope this out?"
+  assistant: "Before we write code, let me bring in the bdd-acceptance-writer agent to turn this into concrete Given/When/Then scenarios we can confirm together."
+  <commentary>A new user-facing rule with vague scope ("a daily limit") is exactly when acceptance criteria need to be nailed down in Gherkin before implementation starts.</commentary>
+  </example>
+
+  <example>
+  Context: diamond-testing-expert is about to design the E2E tier for a settlement feature and finds no approved scenarios exist.
+  assistant: "There's no approved acceptance criteria for this journey yet — I'll bring in bdd-acceptance-writer to draft and confirm the Given/When/Then scenarios first, since the E2E tier has to be derived from those, not invented."
+  <commentary>diamond-testing-expert must not invent E2E journeys; when none exist, bdd-acceptance-writer is invoked to produce them first.</commentary>
+  </example>
+model: sonnet
+color: teal
