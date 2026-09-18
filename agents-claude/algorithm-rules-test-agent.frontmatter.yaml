@@ -1,0 +1,6 @@
+name: algorithm-rules-test-agent
+description: >-
+  Specialist for pure deterministic logic — calculators, rule engines, validators, parsers with no I/O. The diamond's unit-test base; the one surface where direct invocation is correct rather than a shortcut to avoid.
+model: sonnet
+color: pink
+tools: Read, Grep, Glob, Write, Edit, Bash

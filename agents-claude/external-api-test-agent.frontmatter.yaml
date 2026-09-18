@@ -1,0 +1,6 @@
+name: external-api-test-agent
+description: >-
+  Specialist for outbound calls to third-party/vendor/other-service APIs. Owns stub sourcing and fixture files for every external dependency in the codebase; other specialists call this agent rather than hand-rolling their own stubs.
+model: sonnet
+color: orange
+tools: Read, Grep, Glob, Write, Edit, Bash

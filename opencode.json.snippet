@@ -1,0 +1,75 @@
+{
+  "_comment": "NOTE: nested subagent-calling-subagent (e.g. api-inbound-test-agent invoking database-test-agent directly) is confirmed for Claude Code via the Agent tool, up to depth 5. This has not been verified for OpenCode's agent model in this session — if direct delegation between OpenCode subagents doesn't work, relay manually through the primary/orchestrator agent instead, the same fallback used in CLAUDE.md.",
+  "agent": {
+    "bdd-acceptance-writer": {
+      "description": "BDD facilitator — elicits and writes Gherkin acceptance criteria (Given/When/Then) for user-facing behavior, confirmed with the user before implementation.",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "tools": { "write": true, "edit": true, "bash": false },
+      "prompt": "{file:./agents-shared/bdd-acceptance-writer.md}"
+    },
+    "boundary-discovery-agent": {
+      "description": "Scans the codebase, classifies every test surface/participant, and produces a Mermaid boundary map for approval before any test-creator agent runs.",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "tools": { "write": true, "edit": false, "bash": false },
+      "prompt": "{file:./agents-shared/boundary-discovery-agent.md}"
+    },
+    "diamond-testing-expert": {
+      "description": "Top-level test orchestrator — decides which specialists are needed from the approved boundary map, spins them up, enforces shared diamond principles, runs the final coverage loop. Does not write tests itself.",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "tools": { "write": false, "edit": false, "bash": true },
+      "prompt": "{file:./agents-shared/specialists/diamond-testing-expert.md}"
+    },
+    "api-inbound-test-agent": {
+      "description": "Specialist for inbound REST/gRPC/GraphQL entry points; drives tests through the real HTTP/RPC boundary.",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "tools": { "write": true, "edit": true, "bash": true },
+      "prompt": "{file:./agents-shared/specialists/api-inbound-test-agent.md}"
+    },
+    "external-api-test-agent": {
+      "description": "Specialist and single owner of outbound API stubs/fixtures for every external dependency.",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "tools": { "write": true, "edit": true, "bash": true },
+      "prompt": "{file:./agents-shared/specialists/external-api-test-agent.md}"
+    },
+    "jobs-test-agent": {
+      "description": "Specialist for scheduled jobs, message consumers, and async event-triggered processing; focuses on idempotency and retry behavior.",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "tools": { "write": true, "edit": true, "bash": true },
+      "prompt": "{file:./agents-shared/specialists/jobs-test-agent.md}"
+    },
+    "database-test-agent": {
+      "description": "Specialist and single owner of database/persistence testing and test-data bootstrapping for the whole project.",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "tools": { "write": true, "edit": true, "bash": true },
+      "prompt": "{file:./agents-shared/specialists/database-test-agent.md}"
+    },
+    "middleware-test-agent": {
+      "description": "Specialist for filters, interceptors, AOP aspects, and auth/authz; tests middleware in its real chain position.",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "tools": { "write": true, "edit": true, "bash": true },
+      "prompt": "{file:./agents-shared/specialists/middleware-test-agent.md}"
+    },
+    "config-test-agent": {
+      "description": "Specialist for configuration binding, validation, and profile-dependent wiring.",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "tools": { "write": true, "edit": true, "bash": true },
+      "prompt": "{file:./agents-shared/specialists/config-test-agent.md}"
+    },
+    "algorithm-rules-test-agent": {
+      "description": "Specialist for pure deterministic logic — calculators, rule engines, validators, parsers with no I/O.",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-6",
+      "tools": { "write": true, "edit": true, "bash": true },
+      "prompt": "{file:./agents-shared/specialists/algorithm-rules-test-agent.md}"
+    }
+  }
+}
